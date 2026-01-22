@@ -1,0 +1,11 @@
+carrier_code,airline_name,callsign,country,fleet_size,primary_hub,on_time_baseline
+DL,Delta Air Lines,DELTA,USA,950,ATL,0.83
+AA,American Airlines,AMERICAN,USA,940,DFW,0.79
+UA,United Airlines,UNITED,USA,920,ORD,0.8
+WN,Southwest Airlines,SOUTHWEST,USA,815,DAL,0.78
+AS,Alaska Airlines,ALASKA,USA,310,SEA,0.82
+B6,JetBlue Airways,JETBLUE,USA,290,JFK,0.73
+NK,Spirit Airlines,SPIRIT WINGS,USA,200,FLL,0.71
+OO,SkyWest Airlines,SKYWEST,USA,520,SLC,0.81
+F9,Frontier Airlines,FRONTIER FLIGHT,USA,135,DEN,0.72
+HA,Hawaiian Airlines,HAWAIIAN,USA,62,HNL,0.88
