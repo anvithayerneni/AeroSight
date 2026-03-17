@@ -1,0 +1,95 @@
+{
+  "training_timestamp": "2026-09-27T21:11:34.057855",
+  "dataset_records": 29226,
+  "features": [
+    "dep_hour_sin",
+    "dep_hour_cos",
+    "day_of_week_sin",
+    "day_of_week_cos",
+    "month_sin",
+    "month_cos",
+    "distance",
+    "crs_elapsed_time",
+    "carrier_historical_delay_rate",
+    "origin_hourly_avg_dep_delay",
+    "origin_temp_f",
+    "origin_wind_mph",
+    "origin_visibility_miles",
+    "is_weekend",
+    "is_rush_hour",
+    "is_severe_weather"
+  ],
+  "feature_importances": {
+    "origin_hourly_avg_dep_delay": 0.2252,
+    "crs_elapsed_time": 0.1131,
+    "origin_temp_f": 0.1096,
+    "distance": 0.1075,
+    "dep_hour_sin": 0.0865,
+    "origin_wind_mph": 0.0728,
+    "carrier_historical_delay_rate": 0.0666,
+    "dep_hour_cos": 0.0529,
+    "day_of_week_sin": 0.0375,
+    "origin_visibility_miles": 0.0322,
+    "day_of_week_cos": 0.0252,
+    "is_rush_hour": 0.0182,
+    "month_sin": 0.0181,
+    "month_cos": 0.017,
+    "is_severe_weather": 0.0094,
+    "is_weekend": 0.0079
+  },
+  "models": {
+    "delay_classifier": {
+      "algorithm": "RandomForestClassifier",
+      "target": "is_delayed_15",
+      "metrics": {
+        "accuracy": 0.6598,
+        "precision": 0.3773,
+        "recall": 0.4838,
+        "f1_score": 0.424,
+        "roc_auc": 0.6296,
+        "brier_score": 0.2251,
+        "confusion_matrix": {
+          "true_negatives": 3125,
+          "false_positives": 1208,
+          "false_negatives": 781,
+          "true_positives": 732
+        }
+      },
+      "artifact": "delay_classifier.joblib"
+    },
+    "delay_regressor": {
+      "algorithm": "HistGradientBoostingRegressor",
+      "target": "arr_delay_minutes",
+      "metrics": {
+        "mean_absolute_error": 19.81,
+        "root_mean_squared_error": 30.21,
+        "r2_score": 0.0305
+      },
+      "artifact": "delay_regressor.joblib"
+    },
+    "anomaly_detector": {
+      "algorithm": "IsolationForest",
+      "contamination": 0.03,
+      "features": [
+        "dep_delay",
+        "arr_delay",
+        "taxi_out",
+        "taxi_in"
+      ],
+      "artifact": "anomaly_detector.joblib"
+    },
+    "demand_forecaster": {
+      "avg_daily_volume": 324.7,
+      "dow_seasonality_multipliers": {
+        "0": 0.994,
+        "1": 1.002,
+        "2": 0.994,
+        "3": 1.002,
+        "4": 1.009,
+        "5": 1.015,
+        "6": 0.983
+      },
+      "total_days_observed": 90
+    }
+  }
+}
