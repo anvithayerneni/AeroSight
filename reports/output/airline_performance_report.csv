@@ -1,0 +1,11 @@
+carrier_code,airline_name,fleet_size,primary_hub,total_flights,avg_dep_delay,avg_arr_delay,otp15_pct,completion_rate_pct
+DL,Delta Air Lines,950,ATL,5514,10.78,9.28,75.32,97.26
+AA,American Airlines,940,DFW,5380,13.29,11.6,71.75,97.57
+UA,United Airlines,920,ORD,5271,12.13,10.57,73.08,97.51
+WN,Southwest Airlines,815,DAL,4950,12.91,11.31,71.49,97.56
+OO,SkyWest Airlines,520,SLC,3047,12.58,11.1,72.43,97.11
+AS,Alaska Airlines,310,SEA,1814,11.87,10.21,75.58,97.57
+B6,JetBlue Airways,290,JFK,1706,15.25,13.61,67.17,97.54
+NK,Spirit Airlines,200,FLL,1171,16.91,15.16,65.07,97.69
+F9,Frontier Airlines,135,DEN,788,17.47,15.84,62.06,96.07
+HA,Hawaiian Airlines,62,HNL,359,8.29,6.88,79.39,97.77

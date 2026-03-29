@@ -1,0 +1,32 @@
+iata,airport_name,city,state,hub,departures,avg_taxi_out_min,avg_dep_delay_min,delayed_dep_pct,cancellation_rate_pct
+DFW,Dallas/Fort Worth International Airport,Dallas,TX,Large Hub,3207,18.4,12.8,27.03,2.53
+ATL,Hartsfield-Jackson Atlanta International Airport,Atlanta,GA,Large Hub,3201,18.3,10.7,24.05,2.91
+ORD,O'Hare International Airport,Chicago,IL,Large Hub,3144,18.5,13.1,28.09,2.26
+DAL,Dallas Love Field,Dallas,TX,Medium Hub,2949,18.7,13.3,29.09,2.61
+SLC,Salt Lake City International Airport,Salt Lake City,UT,Large Hub,2044,18.4,13.3,27.35,3.03
+SEA,Seattle-Tacoma International Airport,Seattle,WA,Large Hub,1351,18.5,11.9,25.09,2.37
+JFK,John F. Kennedy International Airport,New York,NY,Large Hub,1329,18.7,14.2,30.17,2.26
+FLL,Fort Lauderdale-Hollywood International Airport,Fort Lauderdale,FL,Large Hub,1072,18.7,14.1,30.69,2.05
+DEN,Denver International Airport,Denver,CO,Large Hub,886,18.6,13.9,30.93,2.71
+HNL,Daniel K. Inouye International Airport,Honolulu,HI,Large Hub,663,18.1,8.9,22.62,2.41
+MIA,Miami International Airport,Miami,FL,Large Hub,512,18.2,12.4,24.41,4.88
+STL,St. Louis Lambert International Airport,St. Louis,MO,Medium Hub,508,18.5,13.2,27.17,1.77
+TPA,Tampa International Airport,Tampa,FL,Large Hub,505,18.6,13.2,28.12,2.97
+BWI,Baltimore/Washington International Airport,Baltimore,MD,Large Hub,504,18.4,13.1,27.58,2.58
+IAH,George Bush Intercontinental Airport,Houston,TX,Large Hub,502,18.5,13.4,28.69,1.59
+IAD,Washington Dulles International Airport,Dulles,VA,Large Hub,499,18.3,12.4,25.85,2.0
+PHX,Phoenix Sky Harbor International Airport,Phoenix,AZ,Large Hub,493,18.6,13.8,27.18,2.43
+LAX,Los Angeles International Airport,Los Angeles,CA,Large Hub,491,18.4,15.5,30.55,3.05
+LAS,Harry Reid International Airport,Las Vegas,NV,Large Hub,490,18.6,11.7,27.76,2.45
+MSP,Minneapolis-Saint Paul International Airport,Minneapolis,MN,Large Hub,490,18.8,14.2,31.84,2.24
+MCO,Orlando International Airport,Orlando,FL,Large Hub,485,18.5,13.3,24.74,2.27
+BNA,Nashville International Airport,Nashville,TN,Medium Hub,480,18.2,11.7,25.83,2.71
+CLT,Charlotte Douglas International Airport,Charlotte,NC,Large Hub,479,18.1,11.5,28.81,2.3
+EWR,Newark Liberty International Airport,Newark,NJ,Large Hub,475,18.0,10.0,25.89,2.95
+DTW,Detroit Metropolitan Airport,Detroit,MI,Large Hub,475,18.2,12.3,26.74,3.16
+SAN,San Diego International Airport,San Diego,CA,Medium Hub,475,18.4,13.3,28.84,1.89
+MDW,Chicago Midway International Airport,Chicago,IL,Large Hub,468,18.4,11.6,28.21,2.56
+BOS,Logan International Airport,Boston,MA,Large Hub,462,18.6,15.9,29.87,3.25
+SFO,San Francisco International Airport,San Francisco,CA,Large Hub,460,17.8,12.5,26.74,2.17
+PDX,Portland International Airport,Portland,OR,Medium Hub,457,18.5,11.2,26.26,2.19
+AUS,Austin-Bergstrom International Airport,Austin,TX,Medium Hub,444,18.7,11.7,27.25,3.6

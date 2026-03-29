@@ -1,0 +1,4 @@
+year,month,month_name,total_flights,operated_flights,cancelled_flights,avg_dep_delay,avg_arr_delay,on_time_arrival_pct
+2024,1,January,10290,10019.0,271.0,12.53,10.9,72.23
+2024,2,February,9646,9408.0,238.0,12.92,11.34,72.1
+2024,3,March,10064,9799.0,265.0,12.69,11.13,72.31
