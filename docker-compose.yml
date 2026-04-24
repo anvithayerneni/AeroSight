@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+  # -----------------------------------------------------------------
+  # Profile: core (FastAPI Backend + PostgreSQL + React Frontend)
+  # -----------------------------------------------------------------
+  backend:
+    profiles: ["core", "full"]
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: aerosight-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_TYPE=duckdb
+      - DUCKDB_PATH=data/warehouse.duckdb
+    volumes:
+      - ./data:/app/data
+      - ./ml/models:/app/ml/models
+      - ./reports/output:/app/reports/output
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+    restart: unless-stopped
+
+  frontend:
+    profiles: ["core", "full"]
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: aerosight-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  postgres:
+    profiles: ["core", "full"]
+    image: postgres:16-alpine
+    container_name: aerosight-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=aerosight
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+  # -----------------------------------------------------------------
+  # Profile: streaming (Zookeeper + Apache Kafka + Kafka UI)
+  # -----------------------------------------------------------------
+  zookeeper:
+    profiles: ["streaming", "full"]
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: aerosight-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+  kafka:
+    profiles: ["streaming", "full"]
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: aerosight-kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+
+  kafka-ui:
+    profiles: ["streaming", "full"]
+    image: provectuslabs/kafka-ui:v0.7.2
+    container_name: aerosight-kafka-ui
+    ports:
+      - "8085:8080"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: aerosight-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+
+  # -----------------------------------------------------------------
+  # Profile: analytics (Apache Airflow Webserver & Scheduler)
+  # -----------------------------------------------------------------
+  airflow-webserver:
+    profiles: ["analytics", "full"]
+    image: apache/airflow:2.9.2-python3.11
+    container_name: aerosight-airflow-webserver
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=False
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./data:/opt/airflow/data
+    command: webserver
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+
+volumes:
+  pgdata:
