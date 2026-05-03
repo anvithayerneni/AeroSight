@@ -1,0 +1,17 @@
+services:
+  # AeroSight Unified Web Service (FastAPI serves both API and built React SPA)
+  - type: web
+    name: aerosight-platform
+    env: python
+    buildCommand: "pip install -r requirements.txt && python data/generate_dataset.py && python warehouse/loader.py && python ml/train.py && python reports/generator.py"
+    startCommand: "uvicorn backend.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.10
+      - key: ENVIRONMENT
+        value: production
+      - key: DATABASE_TYPE
+        value: duckdb
+      - key: DUCKDB_PATH
+        value: data/warehouse.duckdb
+    plan: free
