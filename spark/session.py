@@ -4,7 +4,7 @@ Configures a lightweight, Apple Silicon M3 memory-optimized PySpark session.
 """
 
 import os
-import sys
+
 from pyspark.sql import SparkSession
 
 # Ensure JAVA_HOME points to Java 17 LTS if installed in Homebrew

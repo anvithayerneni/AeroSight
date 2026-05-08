@@ -2,8 +2,8 @@
 Unit tests for ML feature transformations and cyclical encodings
 """
 
-import math
-from ml.features import compute_cyclical_features, FEATURE_COLUMNS
+from ml.features import FEATURE_COLUMNS, compute_cyclical_features
+
 
 def test_cyclical_features_bounds():
     # Test midnight (hour 0)

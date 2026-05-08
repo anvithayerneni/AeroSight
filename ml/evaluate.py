@@ -3,22 +3,24 @@ AeroSight Machine Learning Model Evaluation
 Computes comprehensive validation metrics for classification, regression, and anomaly detection.
 """
 
+from typing import Any
+
 import numpy as np
-from typing import Dict, Any
 from sklearn.metrics import (
     accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-    roc_auc_score,
+    brier_score_loss,
     confusion_matrix,
+    f1_score,
     mean_absolute_error,
     mean_squared_error,
+    precision_score,
     r2_score,
-    brier_score_loss
+    recall_score,
+    roc_auc_score,
 )
 
-def evaluate_classifier(y_true: np.ndarray, y_pred: np.ndarray, y_prob: np.ndarray) -> Dict[str, Any]:
+
+def evaluate_classifier(y_true: np.ndarray, y_pred: np.ndarray, y_prob: np.ndarray) -> dict[str, Any]:
     """Calculates classification evaluation metrics."""
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
     return {
@@ -36,7 +38,7 @@ def evaluate_classifier(y_true: np.ndarray, y_pred: np.ndarray, y_prob: np.ndarr
         }
     }
 
-def evaluate_regressor(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, Any]:
+def evaluate_regressor(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, Any]:
     """Calculates regression evaluation metrics."""
     mae = mean_absolute_error(y_true, y_pred)
     mse = mean_squared_error(y_true, y_pred)

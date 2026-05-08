@@ -5,9 +5,11 @@ executes advanced analytical Window functions, and outputs curated business aggr
 """
 
 import os
+
 from pyspark.sql import functions as F
+from pyspark.sql.types import IntegerType
 from pyspark.sql.window import Window
-from pyspark.sql.types import IntegerType, StringType
+
 from spark.session import get_spark_session, stop_spark_session
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

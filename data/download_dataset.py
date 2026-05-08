@@ -3,8 +3,6 @@ AeroSight Public Aviation Dataset Downloader & Guide
 Provides automated fetching instructions and metadata for real-world historical aviation datasets.
 """
 
-import os
-import sys
 import argparse
 
 DATA_SOURCES = {

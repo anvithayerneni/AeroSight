@@ -3,10 +3,12 @@ AeroSight Business Reports API Endpoints
 """
 
 import os
+
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
-from reports.generator import ReportGenerator
+
 from backend.config import settings
+from reports.generator import ReportGenerator
 
 router = APIRouter(prefix="/reports", tags=["Reports"])
 

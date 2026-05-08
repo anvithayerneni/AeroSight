@@ -4,11 +4,12 @@ Uses openpyxl to generate styled executive workbooks with formulas, KPI cards, a
 """
 
 import os
+
 import openpyxl
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.chart import BarChart, Reference
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
-from openpyxl.chart import BarChart, LineChart, Reference
-import pandas as pd
+
 from warehouse.db import get_db
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

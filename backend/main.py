@@ -3,19 +3,21 @@ AeroSight FastAPI Main Application Entrypoint
 """
 
 import os
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from backend.config import settings
-from backend.api.v1.health import router as health_router
-from backend.api.v1.flights import router as flights_router
-from backend.api.v1.airports import router as airports_router
+
 from backend.api.v1.airlines import router as airlines_router
-from backend.api.v1.routes import router as routes_router
+from backend.api.v1.airports import router as airports_router
 from backend.api.v1.analytics import router as analytics_router
+from backend.api.v1.flights import router as flights_router
+from backend.api.v1.health import router as health_router
 from backend.api.v1.ml import router as ml_router
-from backend.api.v1.streaming import router as streaming_router
 from backend.api.v1.reports import router as reports_router
+from backend.api.v1.routes import router as routes_router
+from backend.api.v1.streaming import router as streaming_router
+from backend.config import settings
 
 app = FastAPI(
     title="AeroSight API",
@@ -56,8 +58,8 @@ app.include_router(reports_router, prefix=settings.api_prefix)
 # Mount Frontend SPA if built
 frontend_dist = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist")
 if os.path.exists(frontend_dist):
-    from fastapi.staticfiles import StaticFiles
     from fastapi.responses import FileResponse
+    from fastapi.staticfiles import StaticFiles
     
     app.mount("/assets", StaticFiles(directory=os.path.join(frontend_dist, "assets")), name="assets")
     

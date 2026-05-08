@@ -3,21 +3,20 @@ AeroSight Real-Time Aviation Event Replay Producer
 Streams historical aviation records into Apache Kafka topics at configurable replay speeds.
 """
 
-import os
-import sys
-import time
-import json
-import uuid
 import argparse
-from datetime import datetime, timedelta
+import json
+import os
+import time
+import uuid
+from datetime import datetime
+
 import pandas as pd
+
 from kafka.config import (
     KAFKA_BOOTSTRAP_SERVERS,
-    TOPIC_FLIGHTS,
-    TOPIC_FLIGHT_STATUS,
     TOPIC_AIRPORT_EVENTS,
+    TOPIC_FLIGHT_STATUS,
     TOPIC_WEATHER_EVENTS,
-    TOPIC_BAGGAGE_EVENTS,
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

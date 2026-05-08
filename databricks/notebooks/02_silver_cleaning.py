@@ -8,8 +8,8 @@
 
 # COMMAND ----------
 from pyspark.sql import functions as F
-from pyspark.sql.window import Window
 from pyspark.sql.types import DoubleType, IntegerType
+from pyspark.sql.window import Window
 
 BRONZE_DATA_PATH = spark.conf.get("aerosight.bronze.path", "/mnt/aerosight/bronze")
 SILVER_DATA_PATH = spark.conf.get("aerosight.silver.path", "/mnt/aerosight/silver")

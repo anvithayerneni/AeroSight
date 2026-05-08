@@ -3,12 +3,13 @@ AeroSight Data Quality Reporter
 Generates markdown scorecards and summary reports from validation results.
 """
 
-import os
 import json
-from typing import Dict, Any
+import os
+from typing import Any
+
 
 class DataQualityReporter:
-    def __init__(self, validation_results: Dict[str, Any]):
+    def __init__(self, validation_results: dict[str, Any]):
         self.results = validation_results
 
     def generate_console_summary(self) -> str:
@@ -17,7 +18,7 @@ class DataQualityReporter:
         status = "PASSED" if res.get("passed", False) else "FAILED"
         lines = [
             "==================================================",
-            f"       AEROSIGHT DATA QUALITY SCORECARD",
+            "       AEROSIGHT DATA QUALITY SCORECARD",
             "==================================================",
             f" Dataset:          {res.get('dataset_name', 'Unknown')}",
             f" Status:           {status}",

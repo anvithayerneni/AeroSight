@@ -7,6 +7,7 @@
 
 # COMMAND ----------
 import math
+
 from pyspark.sql import functions as F
 
 SILVER_DATA_PATH = spark.conf.get("aerosight.silver.path", "/mnt/aerosight/silver")

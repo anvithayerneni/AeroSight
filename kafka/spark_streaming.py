@@ -4,11 +4,11 @@ Consumes real-time flight telemetry from Kafka, validates schema, applies waterm
 computes tumbling and sliding window metrics, and writes streaming aggregates to Delta Lake.
 """
 
-import os
 from pyspark.sql import functions as F
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, TimestampType
-from spark.session import get_spark_session, stop_spark_session
+from pyspark.sql.types import DoubleType, IntegerType, StringType, StructField, StructType
+
 from kafka.config import KAFKA_BOOTSTRAP_SERVERS, TOPIC_FLIGHT_STATUS
+from spark.session import get_spark_session, stop_spark_session
 
 # Spark Structured Streaming JSON Schema for Kafka messages
 STREAMING_SCHEMA = StructType([

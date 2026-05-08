@@ -5,9 +5,11 @@ enrichment, window-based turnaround calculations, and writes to the Silver layer
 """
 
 import os
+
 from pyspark.sql import functions as F
+from pyspark.sql.types import DoubleType, IntegerType
 from pyspark.sql.window import Window
-from pyspark.sql.types import DoubleType, IntegerType, StringType, DateType, TimestampType
+
 from spark.session import get_spark_session, stop_spark_session
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

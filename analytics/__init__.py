@@ -1,4 +1,4 @@
-from .statistics import StatisticalEngine
 from .kpi_engine import KPIEngine
+from .statistics import StatisticalEngine
 
-__all__ = ["StatisticalEngine", "KPIEngine"]
+__all__ = ["KPIEngine", "StatisticalEngine"]

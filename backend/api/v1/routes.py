@@ -3,6 +3,7 @@ AeroSight Route Network API Endpoints
 """
 
 from fastapi import APIRouter, Query
+
 from warehouse.db import get_db
 
 router = APIRouter(prefix="/routes", tags=["Routes"])

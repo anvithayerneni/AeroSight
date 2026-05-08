@@ -2,8 +2,10 @@
 AeroSight Health & System Status Endpoints
 """
 
-from fastapi import APIRouter
 from datetime import datetime
+
+from fastapi import APIRouter
+
 from warehouse.db import get_db
 
 router = APIRouter(prefix="/health", tags=["Health"])

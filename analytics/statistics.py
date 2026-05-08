@@ -4,11 +4,14 @@ Computes descriptive distributions, correlation matrices, outlier detection,
 and formal statistical hypothesis testing (t-test, ANOVA, Chi-Square).
 """
 
+from typing import Any
+
 import numpy as np
 import pandas as pd
 from scipy import stats
-from typing import Dict, Any, List
+
 from warehouse.db import get_db
+
 
 class StatisticalEngine:
     def __init__(self, db_manager=None):
@@ -20,7 +23,7 @@ class StatisticalEngine:
             self._flights_df = self.db.query_df("SELECT * FROM fact_flights")
         return self._flights_df
 
-    def compute_delay_descriptive_stats(self) -> Dict[str, Any]:
+    def compute_delay_descriptive_stats(self) -> dict[str, Any]:
         """Calculates comprehensive distribution metrics for arrival and departure delays."""
         df = self.get_flights_dataframe()
         operated = df[df["cancelled"] == 0]
@@ -31,7 +34,7 @@ class StatisticalEngine:
         def _stats(arr):
             p25, p50, p75, p90, p95, p99 = np.percentile(arr, [25, 50, 75, 90, 95, 99])
             return {
-                "count": int(len(arr)),
+                "count": len(arr),
                 "mean": round(float(np.mean(arr)), 2),
                 "median": round(float(p50), 2),
                 "std": round(float(np.std(arr, ddof=1)), 2),
@@ -54,7 +57,7 @@ class StatisticalEngine:
             "departure_delay": _stats(dep_delays),
         }
 
-    def compute_correlation_matrix(self) -> Dict[str, Any]:
+    def compute_correlation_matrix(self) -> dict[str, Any]:
         """Computes Pearson and Spearman correlation coefficients across operational and weather metrics."""
         df = self.get_flights_dataframe()
         operated = df[df["cancelled"] == 0]
@@ -74,7 +77,7 @@ class StatisticalEngine:
             "spearman": spearman_corr
         }
 
-    def detect_delay_outliers(self, threshold_z: float = 3.0) -> Dict[str, Any]:
+    def detect_delay_outliers(self, threshold_z: float = 3.0) -> dict[str, Any]:
         """Detects statistical outliers in arrival delays using Z-score and IQR fences."""
         df = self.get_flights_dataframe()
         operated = df[df["cancelled"] == 0].copy()
@@ -105,7 +108,7 @@ class StatisticalEngine:
             "sample_extreme_outliers": z_outliers[["flight_id", "carrier_key", "origin_airport_key", "dest_airport_key", "arr_delay", "origin_weather_condition"]].head(10).to_dict(orient="records")
         }
 
-    def run_hypothesis_tests(self) -> Dict[str, Any]:
+    def run_hypothesis_tests(self) -> dict[str, Any]:
         """
         Executes formal statistical hypothesis tests on aviation operational questions:
         1. Adverse Weather vs Fair Weather delays (Welch's Two-Sample t-test)

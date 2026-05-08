@@ -8,13 +8,14 @@ import asyncio
 import json
 import random
 import uuid
+from collections.abc import AsyncGenerator
 from datetime import datetime
-from typing import AsyncGenerator, Dict, Any
+from typing import Any
 
 CARRIERS = ["DL", "AA", "UA", "WN", "AS", "B6", "NK", "OO"]
 AIRPORTS = ["ATL", "ORD", "DFW", "DEN", "LAX", "JFK", "SFO", "SEA", "MIA", "BOS", "EWR", "MCO"]
 
-async def generate_live_aviation_event() -> Dict[str, Any]:
+async def generate_live_aviation_event() -> dict[str, Any]:
     """Generates a realistic live telemetry event."""
     carrier = random.choice(CARRIERS)
     orig, dest = random.sample(AIRPORTS, 2)

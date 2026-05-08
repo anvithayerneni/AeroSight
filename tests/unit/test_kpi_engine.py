@@ -4,6 +4,7 @@ Unit tests for KPI Engine calculations
 
 from analytics.kpi_engine import KPIEngine
 
+
 def test_executive_kpis():
     engine = KPIEngine()
     summary = engine.get_executive_summary()

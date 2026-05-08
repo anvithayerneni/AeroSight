@@ -4,12 +4,13 @@ Generates statistically authentic aviation operational data matching the schema 
 distributions of the US Bureau of Transportation Statistics (BTS) On-Time Performance dataset.
 """
 
+import math
 import os
 import random
-import math
 from datetime import datetime, timedelta
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 
 # Set deterministic seed for reproducible data generation
 random.seed(42)

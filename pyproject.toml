@@ -39,6 +39,14 @@ dependencies = [
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+exclude = [".venv", "frontend", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["E501", "W293", "W291", "F841"]
+
+[tool.ruff.lint.per-file-ignores]
+"databricks/notebooks/*" = ["F821"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

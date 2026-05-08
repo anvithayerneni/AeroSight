@@ -4,6 +4,7 @@ Tests for Machine Learning Models and Inference Engine
 
 from ml.inference import InferenceEngine
 
+
 def test_inference_delay_prediction():
     engine = InferenceEngine.get_instance()
     flight_input = {

@@ -4,10 +4,9 @@ Implements preprocessing transformers, cyclical encodings, and lookup builders.
 """
 
 import math
+
 import numpy as np
 import pandas as pd
-from typing import Dict, Any, Tuple, List
-from sklearn.preprocessing import StandardScaler
 
 FEATURE_COLUMNS = [
     "dep_hour_sin", "dep_hour_cos",
@@ -20,7 +19,7 @@ FEATURE_COLUMNS = [
     "is_weekend", "is_rush_hour", "is_severe_weather"
 ]
 
-def compute_cyclical_features(hour: int, day_of_week: int, month: int) -> Dict[str, float]:
+def compute_cyclical_features(hour: int, day_of_week: int, month: int) -> dict[str, float]:
     """Computes continuous cyclical sine and cosine representations for temporal variables."""
     return {
         "dep_hour_sin": math.sin(hour * (2.0 * math.pi / 24.0)),
@@ -33,7 +32,7 @@ def compute_cyclical_features(hour: int, day_of_week: int, month: int) -> Dict[s
         "is_rush_hour": 1 if hour in [7, 8, 9, 16, 17, 18, 19] else 0,
     }
 
-def prepare_training_matrices(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray, List[str]]:
+def prepare_training_matrices(df: pd.DataFrame) -> tuple[np.ndarray, np.ndarray, np.ndarray, list[str]]:
     """
     Extracts feature matrix X, classification target y_clf (is_delayed_15),
     and regression target y_reg (arr_delay).

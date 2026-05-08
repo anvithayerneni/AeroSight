@@ -4,12 +4,13 @@ Audits dataset validity, range constraints, null thresholds, and generates score
 """
 
 from datetime import datetime, timedelta
-import os
+
 import pandas as pd
 
 try:
-    from airflow import DAG
     from airflow.operators.python import PythonOperator
+
+    from airflow import DAG
 except ImportError:
     class DAG:
         def __init__(self, *args, **kwargs): pass
@@ -28,8 +29,8 @@ default_args = {
 }
 
 def audit_bronze_quality():
-    from data_quality.validator import DataQualityValidator
     from data_quality.reporter import DataQualityReporter
+    from data_quality.validator import DataQualityValidator
     df = pd.read_csv("data/raw/flights_sample.csv")
     v = DataQualityValidator(df, dataset_name="bronze_flights")
     res = v.run_all_checks()

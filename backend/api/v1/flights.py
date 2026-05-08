@@ -2,8 +2,9 @@
 AeroSight Flights API Endpoints
 """
 
-from fastapi import APIRouter, Query, HTTPException
-from typing import Optional, List
+
+from fastapi import APIRouter, HTTPException, Query
+
 from warehouse.db import get_db
 
 router = APIRouter(prefix="/flights", tags=["Flights"])
@@ -12,11 +13,11 @@ router = APIRouter(prefix="/flights", tags=["Flights"])
 def get_flights(
     limit: int = Query(50, ge=1, le=500),
     offset: int = Query(0, ge=0),
-    carrier: Optional[str] = None,
-    origin: Optional[str] = None,
-    dest: Optional[str] = None,
+    carrier: str | None = None,
+    origin: str | None = None,
+    dest: str | None = None,
     delayed_only: bool = False,
-    date: Optional[str] = None
+    date: str | None = None
 ):
     db = get_db()
     where_clauses = ["1=1"]

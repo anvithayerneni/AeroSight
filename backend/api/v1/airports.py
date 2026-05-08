@@ -3,6 +3,7 @@ AeroSight Airports API Endpoints
 """
 
 from fastapi import APIRouter, HTTPException
+
 from warehouse.db import get_db
 
 router = APIRouter(prefix="/airports", tags=["Airports"])

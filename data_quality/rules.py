@@ -3,7 +3,7 @@ AeroSight Data Quality Rule Definitions
 Specifies assertion thresholds, schema validation expectations, and business rule definitions.
 """
 
-from typing import Dict, Any, List
+from typing import Any
 
 QUALITY_RULES = {
     "required_columns": [
@@ -35,6 +35,6 @@ QUALITY_RULES = {
     "valid_cancellation_codes": ["A", "B", "C", "D", None, ""]
 }
 
-def get_rule_catalog() -> Dict[str, Any]:
+def get_rule_catalog() -> dict[str, Any]:
     """Returns the full catalog of active data quality validation rules."""
     return QUALITY_RULES

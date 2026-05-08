@@ -3,21 +3,22 @@ AeroSight Data Quality Validator
 Executes schema validation, null checks, range validations, uniqueness, and referential integrity checks.
 """
 
-import os
+from typing import Any
+
 import pandas as pd
-import numpy as np
-from typing import Dict, Any, List, Tuple
+
 from .rules import QUALITY_RULES
+
 
 class DataQualityValidator:
     def __init__(self, df: pd.DataFrame, dataset_name: str = "flights"):
         self.df = df
         self.dataset_name = dataset_name
         self.total_rows = len(df)
-        self.results: Dict[str, Any] = {}
+        self.results: dict[str, Any] = {}
         self.quarantine_indices: set = set()
 
-    def run_all_checks(self) -> Dict[str, Any]:
+    def run_all_checks(self) -> dict[str, Any]:
         """Executes all data quality assertions and returns evaluation metrics."""
         if self.total_rows == 0:
             return {"status": "FAILED", "reason": "Empty dataset", "quality_score": 0.0}
@@ -58,7 +59,7 @@ class DataQualityValidator:
         }
         return self.results
 
-    def check_schema(self) -> Dict[str, Any]:
+    def check_schema(self) -> dict[str, Any]:
         """Verify presence of required columns."""
         required = QUALITY_RULES["required_columns"]
         missing = [col for col in required if col not in self.df.columns]
@@ -70,7 +71,7 @@ class DataQualityValidator:
             "present_count": len(required) - len(missing)
         }
 
-    def check_null_values(self) -> Dict[str, Any]:
+    def check_null_values(self) -> dict[str, Any]:
         """Verify null thresholds on mandatory fields."""
         violations = {}
         for col, max_null_pct in QUALITY_RULES["null_thresholds"].items():
@@ -89,7 +90,7 @@ class DataQualityValidator:
             "total_null_violating_columns": len(violations)
         }
 
-    def check_duplicates(self) -> Dict[str, Any]:
+    def check_duplicates(self) -> dict[str, Any]:
         """Detect duplicate records based on primary natural key."""
         dup_count = 0
         if "flight_id" in self.df.columns:
@@ -109,7 +110,7 @@ class DataQualityValidator:
             "duplicate_pct": round((dup_count / self.total_rows) * 100, 3)
         }
 
-    def check_value_ranges(self) -> Dict[str, Any]:
+    def check_value_ranges(self) -> dict[str, Any]:
         """Check numeric bounds for distance, delays, elapsed time."""
         violations = {}
         for col, (min_val, max_val) in QUALITY_RULES["value_ranges"].items():
@@ -132,7 +133,7 @@ class DataQualityValidator:
             "violations": violations
         }
 
-    def check_business_logic(self) -> Dict[str, Any]:
+    def check_business_logic(self) -> dict[str, Any]:
         """Verify domain logical constraints (e.g., origin != dest, cancelled flights have no dep_time)."""
         issues = []
         

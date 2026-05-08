@@ -4,6 +4,7 @@ Unit tests for AeroSight Statistical Analysis Engine
 
 from analytics.statistics import StatisticalEngine
 
+
 def test_descriptive_statistics():
     engine = StatisticalEngine()
     stats = engine.compute_delay_descriptive_stats()

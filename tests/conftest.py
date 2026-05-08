@@ -2,11 +2,12 @@
 Pytest configuration and shared fixtures for AeroSight tests.
 """
 
-import os
-import pytest
 import pandas as pd
-from warehouse.db import get_db, DatabaseManager
+import pytest
+
 from ml.inference import InferenceEngine
+from warehouse.db import get_db
+
 
 @pytest.fixture(scope="session")
 def db():

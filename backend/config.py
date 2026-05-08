@@ -3,7 +3,9 @@ AeroSight Backend Configuration Settings
 """
 
 import os
+
 from pydantic_settings import BaseSettings
+
 
 class Settings(BaseSettings):
     app_name: str = "AeroSight API"

@@ -3,9 +3,9 @@ End-to-End Pipeline Integration Test
 """
 
 import os
-from data_quality.validator import DataQualityValidator
+
 from warehouse.db import get_db
-from ml.inference import InferenceEngine
+
 
 def test_pipeline_data_flow():
     # 1. Verify Sample & Raw files exist

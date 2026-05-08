@@ -4,19 +4,19 @@ Trains real ML models for Flight Delay Prediction, Anomaly Detection, and Demand
 Saves serialized artifacts and model metadata to ml/models/.
 """
 
-import os
-import json
 import glob
+import json
+import os
 from datetime import datetime
+
+import joblib
 import numpy as np
 import pandas as pd
-import joblib
+from sklearn.ensemble import HistGradientBoostingRegressor, IsolationForest, RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingRegressor, IsolationForest
-from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
-from ml.features import prepare_training_matrices, FEATURE_COLUMNS
+
 from ml.evaluate import evaluate_classifier, evaluate_regressor
+from ml.features import prepare_training_matrices
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GOLD_DIR = os.path.join(BASE_DIR, "data", "gold")

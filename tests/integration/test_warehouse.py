@@ -4,6 +4,7 @@ Integration tests for Data Warehouse querying and integrity
 
 from warehouse.db import get_db
 
+
 def test_warehouse_dimensions_populated():
     db = get_db()
     

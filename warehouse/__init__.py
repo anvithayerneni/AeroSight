@@ -1,5 +1,5 @@
 from .db import DatabaseManager, get_db
-from .schema import ALL_DDL
 from .loader import load_gold_to_warehouse
+from .schema import ALL_DDL
 
-__all__ = ["DatabaseManager", "get_db", "ALL_DDL", "load_gold_to_warehouse"]
+__all__ = ["ALL_DDL", "DatabaseManager", "get_db", "load_gold_to_warehouse"]

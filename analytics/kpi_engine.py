@@ -3,14 +3,16 @@ AeroSight Business KPI Engine
 Computes granular operational, airport, airline, and route KPIs from the Data Warehouse.
 """
 
-from typing import Dict, Any, List, Optional
+from typing import Any
+
 from warehouse.db import get_db
+
 
 class KPIEngine:
     def __init__(self, db_manager=None):
         self.db = db_manager or get_db()
 
-    def get_executive_summary(self) -> Dict[str, Any]:
+    def get_executive_summary(self) -> dict[str, Any]:
         """Returns top-level executive KPI scorecard."""
         query = """
         SELECT 
@@ -52,7 +54,7 @@ class KPIEngine:
 
         return res
 
-    def get_carrier_leaderboard(self) -> List[Dict[str, Any]]:
+    def get_carrier_leaderboard(self) -> list[dict[str, Any]]:
         """Returns carrier reliability and punctuality rankings."""
         query = """
         SELECT 
@@ -73,7 +75,7 @@ class KPIEngine:
         """
         return self.db.execute_query(query)
 
-    def get_airport_congestion_ranking(self, limit: int = 20) -> List[Dict[str, Any]]:
+    def get_airport_congestion_ranking(self, limit: int = 20) -> list[dict[str, Any]]:
         """Returns airport traffic, delay, and taxi-out congestion metrics."""
         query = f"""
         SELECT 
@@ -97,7 +99,7 @@ class KPIEngine:
         """
         return self.db.execute_query(query)
 
-    def get_delay_root_cause_breakdown(self) -> List[Dict[str, Any]]:
+    def get_delay_root_cause_breakdown(self) -> list[dict[str, Any]]:
         """Returns aggregated delay minutes by primary root cause."""
         query = """
         SELECT 
@@ -115,7 +117,7 @@ class KPIEngine:
         """
         return self.db.execute_query(query)
 
-    def get_daily_trends(self) -> List[Dict[str, Any]]:
+    def get_daily_trends(self) -> list[dict[str, Any]]:
         """Returns daily time-series flight volumes and delay trends."""
         query = """
         SELECT 

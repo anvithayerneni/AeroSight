@@ -4,9 +4,10 @@ Provides thread-safe connections to DuckDB (0-cost local embedded OLAP engine) a
 """
 
 import os
+from typing import Any, Optional
+
 import duckdb
 import pandas as pd
-from typing import Optional, List, Dict, Any
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_DUCKDB_PATH = os.path.join(BASE_DIR, "data", "warehouse.duckdb")
@@ -31,7 +32,7 @@ class DatabaseManager:
             self._conn = duckdb.connect(self.db_path)
         return self._conn
 
-    def execute_query(self, query: str, params: Optional[List[Any]] = None) -> List[Dict[str, Any]]:
+    def execute_query(self, query: str, params: list[Any] | None = None) -> list[dict[str, Any]]:
         """Executes a SQL query and returns results as a list of dicts."""
         conn = self.get_connection()
         try:
@@ -50,7 +51,7 @@ class DatabaseManager:
             print(f"Error executing query: {e}\nQuery: {query}")
             raise e
 
-    def query_df(self, query: str, params: Optional[List[Any]] = None) -> pd.DataFrame:
+    def query_df(self, query: str, params: list[Any] | None = None) -> pd.DataFrame:
         """Executes a SQL query and returns result as a Pandas DataFrame."""
         conn = self.get_connection()
         if params:

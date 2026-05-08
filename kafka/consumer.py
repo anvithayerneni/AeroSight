@@ -3,9 +3,11 @@ AeroSight Kafka Python Consumer
 Reads and logs messages from aviation topics.
 """
 
-import json
 import argparse
+import json
+
 from kafka.config import KAFKA_BOOTSTRAP_SERVERS, TOPIC_FLIGHT_STATUS
+
 
 def run_consumer(topic: str = TOPIC_FLIGHT_STATUS, bootstrap_servers: str = KAFKA_BOOTSTRAP_SERVERS):
     try:

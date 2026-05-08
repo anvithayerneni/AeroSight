@@ -3,14 +3,15 @@ AeroSight Machine Learning Inference Engine
 Loads serialized model artifacts and performs real-time scoring for FastAPI endpoints.
 """
 
-import os
 import json
+import os
+from datetime import datetime, timedelta
+from typing import Any, Optional
+
 import joblib
 import numpy as np
-import pandas as pd
-from datetime import datetime, timedelta
-from typing import Dict, Any, List, Optional
-from ml.features import compute_cyclical_features, FEATURE_COLUMNS
+
+from ml.features import compute_cyclical_features
 from warehouse.db import get_db
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,7 +52,7 @@ class InferenceEngine:
             with open(card_path, "r") as f:
                 self.model_card = json.load(f)
 
-    def predict_delay(self, flight_input: Dict[str, Any]) -> Dict[str, Any]:
+    def predict_delay(self, flight_input: dict[str, Any]) -> dict[str, Any]:
         """
         Infers delay probability and expected duration for a planned flight.
         Input dictionary contains:
@@ -162,7 +163,7 @@ class InferenceEngine:
             }
         }
 
-    def detect_anomaly(self, dep_delay: float, arr_delay: float, taxi_out: float, taxi_in: float) -> Dict[str, Any]:
+    def detect_anomaly(self, dep_delay: float, arr_delay: float, taxi_out: float, taxi_in: float) -> dict[str, Any]:
         """Runs unsupervised Isolation Forest anomaly detection on flight operational telemetry."""
         if self.anomaly_detector is None:
             self._load_artifacts()
@@ -183,7 +184,7 @@ class InferenceEngine:
             }
         }
 
-    def forecast_daily_traffic(self, horizon_days: int = 14) -> List[Dict[str, Any]]:
+    def forecast_daily_traffic(self, horizon_days: int = 14) -> list[dict[str, Any]]:
         """Generates forward-looking daily flight traffic forecast."""
         if not self.model_card:
             self._load_artifacts()
@@ -211,7 +212,7 @@ class InferenceEngine:
 
         return forecasts
 
-    def get_model_card(self) -> Dict[str, Any]:
+    def get_model_card(self) -> dict[str, Any]:
         if not self.model_card:
             self._load_artifacts()
         return self.model_card or {}

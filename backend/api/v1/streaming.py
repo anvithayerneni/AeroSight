@@ -4,6 +4,7 @@ AeroSight Real-Time Streaming Telemetry Endpoints (Server-Sent Events)
 
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
+
 from kafka.mock_stream import event_stream_generator, generate_live_aviation_event
 
 router = APIRouter(prefix="/streaming", tags=["Real-Time Operations"])

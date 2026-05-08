@@ -2,9 +2,9 @@
 Tests for Data Quality Validator and Rules
 """
 
-import pandas as pd
-from data_quality.validator import DataQualityValidator
 from data_quality.reporter import DataQualityReporter
+from data_quality.validator import DataQualityValidator
+
 
 def test_data_quality_on_valid_data(sample_flight_data):
     validator = DataQualityValidator(sample_flight_data)

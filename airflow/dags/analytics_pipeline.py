@@ -4,11 +4,11 @@ Orchestrates executive reporting generation and periodic ML model refresh.
 """
 
 from datetime import datetime, timedelta
-import os
 
 try:
-    from airflow import DAG
     from airflow.operators.python import PythonOperator
+
+    from airflow import DAG
 except ImportError:
     class DAG:
         def __init__(self, *args, **kwargs): pass

@@ -1,9 +1,6 @@
-"""
-AeroSight Pydantic Request & Response Schemas
-"""
-
-from typing import List, Optional, Dict, Any
+from typing import Any
 from pydantic import BaseModel, Field
+
 
 # Flight Schemas
 class FlightItem(BaseModel):
@@ -11,53 +8,53 @@ class FlightItem(BaseModel):
     flight_date: str
     carrier_key: str
     flight_number: int
-    aircraft_key: Optional[str] = None
+    aircraft_key: str | None = None
     origin_airport_key: str
     dest_airport_key: str
     route_key: str
     crs_dep_time: int
-    dep_time: Optional[int] = None
-    dep_delay: Optional[float] = 0.0
-    taxi_out: Optional[float] = 0.0
+    dep_time: int | None = None
+    dep_delay: float | None = 0.0
+    taxi_out: float | None = 0.0
     crs_arr_time: int
-    arr_time: Optional[int] = None
-    arr_delay: Optional[float] = 0.0
+    arr_time: int | None = None
+    arr_delay: float | None = 0.0
     cancelled: int = 0
-    cancellation_code: Optional[str] = None
+    cancellation_code: str | None = None
     diverted: int = 0
     distance: int
     is_delayed_15: int = 0
-    origin_temp_f: Optional[float] = None
-    origin_weather_condition: Optional[str] = None
+    origin_temp_f: float | None = None
+    origin_weather_condition: str | None = None
 
 class PaginatedFlightsResponse(BaseModel):
     total_count: int
     page: int
     limit: int
-    flights: List[FlightItem]
+    flights: list[FlightItem]
 
 # Airport Schemas
 class AirportItem(BaseModel):
     iata: str
-    icao: Optional[str] = None
+    icao: str | None = None
     name: str
     city: str
     state: str
     lat: float
     lon: float
-    elev: Optional[int] = None
-    hub: Optional[str] = None
-    terminals: Optional[int] = None
-    gates: Optional[int] = None
+    elev: int | None = None
+    hub: str | None = None
+    terminals: int | None = None
+    gates: int | None = None
 
 # Airline Schemas
 class AirlineItem(BaseModel):
     carrier_code: str
     airline_name: str
-    callsign: Optional[str] = None
-    country: Optional[str] = None
-    fleet_size: Optional[int] = None
-    primary_hub: Optional[str] = None
+    callsign: str | None = None
+    country: str | None = None
+    fleet_size: int | None = None
+    primary_hub: str | None = None
 
 # ML Prediction Schemas
 class DelayPredictionRequest(BaseModel):
@@ -79,7 +76,7 @@ class DelayPredictionResponse(BaseModel):
     delay_probability_pct: float
     risk_tier: str
     predicted_delay_minutes: float
-    input_features: Dict[str, Any]
+    input_features: dict[str, Any]
 
 class AnomalyDetectionRequest(BaseModel):
     dep_delay: float = Field(..., example=45.0)
@@ -91,7 +88,7 @@ class AnomalyDetectionResponse(BaseModel):
     is_anomaly: bool
     anomaly_score: float
     severity: str
-    telemetry: Dict[str, float]
+    telemetry: dict[str, float]
 
 class TrafficForecastItem(BaseModel):
     forecast_date: str

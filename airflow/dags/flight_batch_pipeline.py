@@ -3,16 +3,16 @@ AeroSight Airflow Batch Pipeline DAG: flight_batch_pipeline
 Orchestrates raw extraction -> PySpark Bronze -> Silver -> Gold -> Quality Gate -> Warehouse Load.
 """
 
-from datetime import datetime, timedelta
 import os
-import sys
+from datetime import datetime, timedelta
 
 # Airflow DAG definition
 try:
-    from airflow import DAG
-    from airflow.operators.python import PythonOperator
     from airflow.operators.bash import BashOperator
+    from airflow.operators.python import PythonOperator
     from airflow.utils.task_group import TaskGroup
+
+    from airflow import DAG
 except ImportError:
     class DAG:
         def __init__(self, *args, **kwargs): pass
@@ -64,6 +64,7 @@ def task_run_feature_store():
 
 def task_run_data_quality():
     import pandas as pd
+
     from data_quality.validator import DataQualityValidator
     df = pd.read_csv("data/raw/flights_sample.csv")
     validator = DataQualityValidator(df)

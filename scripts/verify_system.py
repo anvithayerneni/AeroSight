@@ -3,17 +3,19 @@ AeroSight End-to-End System Verification Script
 Validates all layers: Data Ingestion, PySpark Lakehouse, Warehouse, SQL, ML, FastAPI, and Reports.
 """
 
+import glob
 import os
 import sys
-import glob
+
 import pandas as pd
-from warehouse.db import get_db
-from ml.inference import InferenceEngine
-from analytics.kpi_engine import KPIEngine
-from analytics.statistics import StatisticalEngine
-from data_quality.validator import DataQualityValidator
 from fastapi.testclient import TestClient
+
+from analytics.statistics import StatisticalEngine
 from backend.main import app
+from data_quality.validator import DataQualityValidator
+from ml.inference import InferenceEngine
+from warehouse.db import get_db
+
 
 def run_verification():
     print("=" * 70)
@@ -100,7 +102,8 @@ def run_verification():
     all_passed = True
     for name, passed, detail in checks:
         status_str = "✅ PASS" if passed else "❌ FAIL"
-        if not passed: all_passed = False
+        if not passed:
+            all_passed = False
         print(f"{name:<40} | {status_str:<8} | {detail}")
     print("=" * 80)
 

@@ -3,11 +3,13 @@ AeroSight Gold to Data Warehouse Loader
 Loads curated Gold Parquet tables into DuckDB / PostgreSQL Star Schema tables.
 """
 
-import os
 import glob
+import os
+
 import duckdb
+
+from warehouse.db import DEFAULT_DUCKDB_PATH
 from warehouse.schema import ALL_DDL
-from warehouse.db import get_db, DEFAULT_DUCKDB_PATH
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GOLD_DIR = os.path.join(BASE_DIR, "data", "gold")
