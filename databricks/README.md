@@ -31,10 +31,10 @@ spark.conf.set("aerosight.gold.path", "abfss://gold@<storage-account-name>.dfs.c
 
 Execute the following notebooks in sequence or orchestrate them via **Databricks Workflows (Multi-Task Jobs)**:
 
-1. [`01_bronze_ingestion.py`](file:///Users/anvithayerneni/.gemini/antigravity/scratch/aerosight/databricks/notebooks/01_bronze_ingestion.py): Ingests raw flight operational telemetry into Bronze Delta tables with audit envelopes.
-2. [`02_silver_cleaning.py`](file:///Users/anvithayerneni/.gemini/antigravity/scratch/aerosight/databricks/notebooks/02_silver_cleaning.py): Cleans, validates, deduplicates, and calculates windowed turnaround times.
-3. [`03_gold_aggregations.py`](file:///Users/anvithayerneni/.gemini/antigravity/scratch/aerosight/databricks/notebooks/03_gold_aggregations.py): Builds Star-Schema Fact & Dimension Delta tables and KPI summaries.
-4. [`04_feature_store.py`](file:///Users/anvithayerneni/.gemini/antigravity/scratch/aerosight/databricks/notebooks/04_feature_store.py): Computes cyclical temporal encodings and registers curated ML features.
+1. [`01_bronze_ingestion.py`](notebooks/01_bronze_ingestion.py): Ingests raw flight operational telemetry into Bronze Delta tables with audit envelopes.
+2. [`02_silver_cleaning.py`](notebooks/02_silver_cleaning.py): Cleans, validates, deduplicates, and calculates windowed turnaround times.
+3. [`03_gold_aggregations.py`](notebooks/03_gold_aggregations.py): Builds Star-Schema Fact & Dimension Delta tables and KPI summaries.
+4. [`04_feature_store.py`](notebooks/04_feature_store.py): Computes cyclical temporal encodings and registers curated ML features.
 
 ---
 

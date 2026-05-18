@@ -1,13 +1,16 @@
 # AeroSight — End-to-End Airline Operations Intelligence & Data Platform
 
-[![CI/CD Tests](https://github.com/aerosight/aerosight/actions/workflows/tests.yml/badge.svg)](https://github.com/aerosight/aerosight)
-[![Code Quality](https://github.com/aerosight/aerosight/actions/workflows/lint.yml/badge.svg)](https://github.com/aerosight/aerosight)
-[![Build Verification](https://github.com/aerosight/aerosight/actions/workflows/build.yml/badge.svg)](https://github.com/aerosight/aerosight)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-pmid--griffin--powerful--triumph.trycloudflare.com-success?style=for-the-badge&logo=cloudflare)](https://pmid-griffin-powerful-triumph.trycloudflare.com)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-anvithayerneni%2FAeroSight-blue?style=for-the-badge&logo=github)](https://github.com/anvithayerneni/AeroSight)
+
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Cost: $0 Cloud Required](https://img.shields.io/badge/Cloud%20Cost-%240.00%20(Local%20First)-success.svg)](#2-important-cost-requirement)
+[![Cloud Cost: $0](https://img.shields.io/badge/Cloud%20Cost-%240.00%20(Local%20First)-success.svg)](#4-local-development--0-cost-setup)
 
-AeroSight is a production-style civil aviation data platform and operational intelligence application designed to monitor flight punctuality, diagnose turnaround bottlenecks, stream real-time operational telemetry, and predict delay risks across major US airline networks.
+> 🚀 **Live Interactive Application**: **[https://pmid-griffin-powerful-triumph.trycloudflare.com](https://pmid-griffin-powerful-triumph.trycloudflare.com)**  
+> 📖 **Interactive Swagger API Docs**: **[https://pmid-griffin-powerful-triumph.trycloudflare.com/docs](https://pmid-griffin-powerful-triumph.trycloudflare.com/docs)**
+
+AeroSight is a civil aviation data platform and operational intelligence application designed to monitor flight punctuality, diagnose turnaround bottlenecks, stream real-time operational telemetry, and predict delay risks across major US airline networks.
 
 ---
 
@@ -91,7 +94,7 @@ AeroSight utilizes real operational datasets compliant with the **US Department 
 * **Airport Metadata**: 31 major US large and medium commercial hubs (IATA, ICAO, coordinates, elevation, timezones, terminals, gates).
 * **Airline Metadata**: 10 major US carriers (Delta, American, United, Southwest, Alaska, JetBlue, Spirit, SkyWest, Frontier, Hawaiian) with fleet sizes and base hubs.
 * **Sample Included**: `data/sample/flights_sample.csv` (30,000 verified operational records).
-* **Attribution**: US Bureau of Transportation Statistics (Public Domain). Instructions for downloading multi-year archives are in [`data/download_dataset.py`](file:///Users/anvithayerneni/.gemini/antigravity/scratch/aerosight/data/download_dataset.py).
+* **Attribution**: US Bureau of Transportation Statistics (Public Domain). Instructions for downloading multi-year archives are in [`data/download_dataset.py`](data/download_dataset.py).
 
 ---
 
@@ -110,8 +113,8 @@ Designed and optimized for **Apple Silicon (MacBook Air M3, 16 GB RAM)**:
 ### Quick Start (One Command)
 ```bash
 # 1. Clone repository
-git clone https://github.com/aerosight/aerosight.git
-cd aerosight
+git clone https://github.com/anvithayerneni/AeroSight.git
+cd AeroSight
 
 # 2. Set up Python virtual environment
 python3.11 -m venv .venv

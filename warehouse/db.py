@@ -15,21 +15,24 @@ DEFAULT_DUCKDB_PATH = os.path.join(BASE_DIR, "data", "warehouse.duckdb")
 class DatabaseManager:
     _instance: Optional["DatabaseManager"] = None
 
-    def __init__(self, db_path: str = DEFAULT_DUCKDB_PATH):
+    def __init__(self, db_path: str = DEFAULT_DUCKDB_PATH, read_only: bool = True):
         self.db_path = db_path
+        self.read_only = read_only
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
         self._conn = None
 
     @classmethod
-    def get_instance(cls, db_path: str = DEFAULT_DUCKDB_PATH) -> "DatabaseManager":
+    def get_instance(cls, db_path: str = DEFAULT_DUCKDB_PATH, read_only: bool = True) -> "DatabaseManager":
         if cls._instance is None:
-            cls._instance = cls(db_path)
+            cls._instance = cls(db_path, read_only=read_only)
         return cls._instance
 
     def get_connection(self) -> duckdb.DuckDBPyConnection:
         if self._conn is None:
-            # DuckDB read-write connection
-            self._conn = duckdb.connect(self.db_path)
+            try:
+                self._conn = duckdb.connect(self.db_path, read_only=self.read_only)
+            except Exception:
+                self._conn = duckdb.connect(self.db_path, read_only=True)
         return self._conn
 
     def execute_query(self, query: str, params: list[Any] | None = None) -> list[dict[str, Any]]:
