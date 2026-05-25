@@ -30,6 +30,11 @@ jobs:
         run: |
           ruff check .
 
+      - name: Bootstrap Database & Models
+        run: |
+          python warehouse/loader.py
+          python ml/train.py
+
       - name: Run Pytest Suite
         run: |
           PYTHONPATH=. pytest -v
