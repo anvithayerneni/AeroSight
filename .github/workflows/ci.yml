@@ -32,8 +32,8 @@ jobs:
 
       - name: Bootstrap Database & Models
         run: |
-          python warehouse/loader.py
-          python ml/train.py
+          PYTHONPATH=. python warehouse/loader.py
+          PYTHONPATH=. python ml/train.py
 
       - name: Run Pytest Suite
         run: |
