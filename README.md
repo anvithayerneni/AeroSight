@@ -2,6 +2,7 @@
 
 > A real-time airline operations intelligence platform & flight delay prediction engine.
 
+[![CI](https://github.com/anvithayerneni/AeroSight/actions/workflows/ci.yml/badge.svg)](https://github.com/anvithayerneni/AeroSight/actions/workflows/ci.yml)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-success?style=flat-square)](https://pmid-griffin-powerful-triumph.trycloudflare.com)
 [![Swagger Docs](https://img.shields.io/badge/API%20Docs-Swagger-blue?style=flat-square)](https://pmid-griffin-powerful-triumph.trycloudflare.com/docs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
