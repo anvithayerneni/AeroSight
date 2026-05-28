@@ -16,8 +16,9 @@ async def stream_live_telemetry():
         event_stream_generator(delay_seconds=2.5),
         media_type="text/event-stream",
         headers={
-            "Cache-Control": "no-cache",
+            "Cache-Control": "no-cache, no-transform",
             "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
             "Access-Control-Allow-Origin": "*",
         }
     )
